@@ -30,17 +30,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Login(View view){
-        /*Intent intent = new Intent(this, activity_login.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     public void CadastroResponsavelAluno(View view){
         /*Intent intent = new Intent(this, activity_cadastro_responsavel_aluno.class);
-        startActivity(intent);*/
-    }
-
-    public void CadastroEscola(View view){
-        /*Intent intent = new Intent(this, activity_cadastro_escola.class);
         startActivity(intent);*/
     }
 }
