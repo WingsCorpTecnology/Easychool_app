@@ -2,7 +2,6 @@ package com.cursoandroid.easychool_v4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CadastroActivity extends AppCompatActivity {
-    TextView txtNome, txtEmail, txtTelefone, txtSenha, txtConfirmarSenha;
+    TextView txtNome, txtEmail, txtTelefone, txtRg, txtCpf;
     CheckBox cbCondicaoUso;
 
     @Override
@@ -28,8 +27,8 @@ public class CadastroActivity extends AppCompatActivity {
         txtNome = findViewById(R.id.txt_nome);
         txtEmail = findViewById(R.id.txt_email);
         txtTelefone = findViewById(R.id.txt_telefone);
-        txtSenha = findViewById(R.id.txt_senha);
-        txtConfirmarSenha = findViewById(R.id.txt_confirmar_senha);
+        txtRg = findViewById(R.id.txt_rg);
+        txtCpf = findViewById(R.id.txt_cpf);
         cbCondicaoUso = findViewById(R.id.cbCondicaoUso);
         Button btn = findViewById(R.id.btnCadastrar);
 
@@ -38,22 +37,19 @@ public class CadastroActivity extends AppCompatActivity {
         txtNome.setTypeface(typeface);
         txtEmail.setTypeface(typeface);
         txtTelefone.setTypeface(typeface);
-        txtSenha.setTypeface(typeface);
-        txtConfirmarSenha.setTypeface(typeface);
+        txtRg.setTypeface(typeface);
+        txtCpf.setTypeface(typeface);
         cbCondicaoUso.setTypeface(typeface);
         btn.setTypeface(typeface);
     }
 
     public void telaIncial(View view){
         if(verificarText()){
-            if(senhasIguais()){
-                if(validarFormatoEmail(txtEmail.getText().toString())) {
-                    /*Intent intent = new Intent(this, activity_menu_responsavel_aluno.class);
-                    startActivity(intent);*/
-                }
-                else mensagemEmailInvalido();
+            if(validarFormatoEmail(txtEmail.getText().toString())) {
+                /*Intent intent = new Intent(this, activity_menu_responsavel_aluno.class);
+                startActivity(intent);*/
             }
-            else mensagemSenhasDiferentes();
+            else mensagemEmailInvalido();
         }
         else mensagemCampoVazio();
     }
@@ -61,10 +57,10 @@ public class CadastroActivity extends AppCompatActivity {
     public boolean verificarText(){
         boolean preenchido;
 
-        if(txtSenha.getText().toString().trim().equals("")){
+        if(txtRg.getText().toString().trim().equals("")){
             preenchido = false;
         }
-        else if(txtConfirmarSenha.getText().toString().trim().equals("")){
+        else if(txtCpf.getText().toString().trim().equals("")){
             preenchido = false;
         }
         else if(txtEmail.getText().toString().trim().equals("")){
@@ -85,24 +81,8 @@ public class CadastroActivity extends AppCompatActivity {
         return preenchido;
     }
 
-    public boolean senhasIguais(){
-        boolean iguais;
-
-        if(txtSenha.getText().toString().equals(txtConfirmarSenha.getText().toString())){
-            iguais = true;
-        }
-        else{
-            iguais = false;
-        }
-        return iguais;
-    }
-
     public void mensagemCampoVazio(){
         Toast.makeText(this, "Preencha os campos vazios para continuar", Toast.LENGTH_SHORT).show();
-    }
-
-    public void mensagemSenhasDiferentes(){
-        Toast.makeText(this, "As senhas estão diferentes, deixe-as iguais para continuar", Toast.LENGTH_SHORT).show();
     }
 
     public void mensagemEmailInvalido(){
