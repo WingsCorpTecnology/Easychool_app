@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void CadastroResponsavelAluno(View view){
-        /*Intent intent = new Intent(this, activity_cadastro_responsavel_aluno.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(this, CadastroActivity.class);
+        startActivity(intent);
     }
 }
