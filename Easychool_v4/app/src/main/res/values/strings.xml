@@ -20,4 +20,6 @@
     <string name="termos_uso">Eu concordo com os Termos e Condições e Política de Privacidade</string>
     <string name="btn_cadastrar">Cadastrar</string>
     <string name="continuar">Continuar</string>
+    <string name="definir_senha">Defina uma senha de acesso</string>
+    <string name="desc_definir">Defina uma senha para que você possa acessar a nossa plataforma</string>
 </resources>

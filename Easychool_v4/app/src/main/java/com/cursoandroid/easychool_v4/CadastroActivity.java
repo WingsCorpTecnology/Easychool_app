@@ -2,6 +2,7 @@ package com.cursoandroid.easychool_v4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -46,8 +47,8 @@ public class CadastroActivity extends AppCompatActivity {
     public void telaIncial(View view){
         if(verificarText()){
             if(validarFormatoEmail(txtEmail.getText().toString())) {
-                /*Intent intent = new Intent(this, activity_menu_responsavel_aluno.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(this, CadastroSenhaActivity.class);
+                startActivity(intent);
             }
             else mensagemEmailInvalido();
         }
