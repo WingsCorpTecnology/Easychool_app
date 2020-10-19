@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Easychool</string>
+    <string name="criar_conta">Crie sua conta</string>
+    <string name="btn_escola">Escola</string>
+    <string name="btn_responsavel_aluno">Pais/Responsáveis</string>
+    <string name="btn_login">Login</string>
+    <string name="fazer_login">Já possui uma conta? Entre</string>
+    <string name="txt_email">Email:</string>
+    <string name="txt_senha">Senha:</string>
+    <string name="fazer_login_title">Faça seu Login</string>
+    <string name="fazer_login_desc">Preencha pos campos abaixo para realizar o login</string>
+    <string name="esqueceu_senha">Esqueceu sua senha? Clique aqui</string>
+    <string name="manter_conctado">Mantenha-me conectado</string>
+    <string name="cadastro_pai_aluno">Cadastre-se</string>
+    <string name="fazer_cadastro_desc">Preencha os campos abaixo com seus dados pessoais</string>
+    <string name="txt_nome">Nome:</string>
+    <string name="txt_telefone">Telefone:</string>
+    <string name="txt_confirmar_senha">Confirme sua Senha:</string>
+    <string name="termos_uso">Eu concordo com os Termos e Condições e Política de Privacidade</string>
+    <string name="btn_cadastrar">Cadastrar</string>
+    <string name="continuar">Continuar</string>
+</resources>
