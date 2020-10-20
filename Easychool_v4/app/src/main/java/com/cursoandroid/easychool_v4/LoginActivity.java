@@ -36,13 +36,19 @@ public class LoginActivity extends AppCompatActivity {
         textView7.setTypeface(typeface);
         cbManterConectado.setTypeface(typeface);
         btn.setTypeface(typeface);
+
+        //Esconder a ActionBar
+        getSupportActionBar().hide();
     }
 
     public void telaInicial(View view){
         if(verificarText()) {
             if(validarFormatoEmail(txtEmail.getText().toString())) {
-                /*Intent intent = new Intent(this, PrincipalActivity.class);
-                startActivity(intent);*/
+                if(validarEmail(txtEmail.getText().toString()) && validarSenha(txtSenha.getText().toString())) {
+                    Intent intent = new Intent(this, PrincipalActivity.class);
+                    startActivity(intent);
+                }
+                else mensagemUsuarioIncorreto();
             }
             else mensagemEmailInvalido();
         }
@@ -56,9 +62,6 @@ public class LoginActivity extends AppCompatActivity {
             preenchido = false;
         }
         else if(txtEmail.getText().toString().trim().equals("")){
-            preenchido = false;
-        }
-        else if(cbManterConectado.isChecked() == false){
             preenchido = false;
         }
         else{
@@ -75,10 +78,32 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, "Digite um email válido", Toast.LENGTH_SHORT).show();
     }
 
+    public void mensagemUsuarioIncorreto(){
+        Toast.makeText(this, "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();
+    }
+
     public boolean validarFormatoEmail(final String email){
         if(Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             return true;
         }
         else return false;
+    }
+
+    public boolean validarSenha(String senha){
+        if(senha.equals("gi")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean validarEmail(String email){
+        if(email.equals("gi@gmail.com")){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

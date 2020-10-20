@@ -34,6 +34,9 @@ public class CadastroSenhaActivity extends AppCompatActivity {
         txtSenha.setTypeface(typeface);
         cbCondicaoUso.setTypeface(typeface);
         btn.setTypeface(typeface);
+
+        //Esconder a ActionBar
+        getSupportActionBar().hide();
     }
 
     public void login(View view){

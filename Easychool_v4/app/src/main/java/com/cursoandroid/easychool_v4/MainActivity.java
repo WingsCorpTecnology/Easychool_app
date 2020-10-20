@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         textView2.setTypeface(typeface);
         btn.setTypeface(typeface);
         btn2.setTypeface(typeface);
+
+        //Esconder a ActionBar
+        getSupportActionBar().hide();
     }
 
     public void Login(View view){

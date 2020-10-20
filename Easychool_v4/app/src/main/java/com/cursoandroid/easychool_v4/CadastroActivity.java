@@ -42,6 +42,9 @@ public class CadastroActivity extends AppCompatActivity {
         txtCpf.setTypeface(typeface);
         cbCondicaoUso.setTypeface(typeface);
         btn.setTypeface(typeface);
+
+        //Esconder a ActionBar
+        getSupportActionBar().hide();
     }
 
     public void telaIncial(View view){

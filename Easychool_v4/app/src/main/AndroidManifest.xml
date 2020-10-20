@@ -9,6 +9,9 @@
         android:roundIcon="@drawable/logo_easychool"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".PrincipalActivity"
+            android:label="@string/title_activity_principal"></activity>
         <activity android:name=".CadastroSenhaActivity" />
         <activity android:name=".CadastroActivity" />
         <activity android:name=".LoginActivity" />
