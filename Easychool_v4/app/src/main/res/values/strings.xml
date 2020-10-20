@@ -26,7 +26,7 @@
     <string name="nav_config">Configurar</string>
     <string name="nav_fila">Fila de Espera</string>
     <string name="title_activity_principal">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_pesquisa">Pesquisar</string>
+    <string name="title_fila">Fila de Espera</string>
+    <string name="title_confguracao">Configurações</string>
 </resources>

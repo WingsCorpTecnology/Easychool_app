@@ -1,4 +1,4 @@
-package com.cursoandroid.easychool_v4.ui.dashboard;
+package com.cursoandroid.easychool_v4.ui.fila;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

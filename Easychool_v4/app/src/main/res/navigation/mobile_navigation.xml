@@ -7,19 +7,27 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.cursoandroid.easychool_v4.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.cursoandroid.easychool_v4.ui.pesquisa.HomeFragment"
+        android:label="@string/title_pesquisa"
+        tools:layout="@layout/fragment_pesquisa" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.cursoandroid.easychool_v4.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.cursoandroid.easychool_v4.ui.fila.DashboardFragment"
+        android:label="@string/title_fila"
+        tools:layout="@layout/fragment_fila_de_espera" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_navigation_notifications"
+            app:destination="@id/navigation_notifications" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.cursoandroid.easychool_v4.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.cursoandroid.easychool_v4.ui.configuracoes.NotificationsFragment"
+        android:label="@string/title_confguracao"
+        tools:layout="@layout/fragment_configuracoes" />
 </navigation>
