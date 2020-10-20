@@ -9,7 +9,7 @@
         android:roundIcon="@drawable/logo_easychool"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CadastroSenhaActivity"></activity>
+        <activity android:name=".CadastroSenhaActivity" />
         <activity android:name=".CadastroActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">

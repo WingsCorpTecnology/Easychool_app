@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     public void telaInicial(View view){
         if(verificarText()) {
             if(validarFormatoEmail(txtEmail.getText().toString())) {
-                /*Intent intent = new Intent(this, activity_menu_responsavel_aluno.class);
+                /*Intent intent = new Intent(this, PrincipalActivity.class);
                 startActivity(intent);*/
             }
             else mensagemEmailInvalido();

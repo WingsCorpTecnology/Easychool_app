@@ -22,4 +22,7 @@
     <string name="continuar">Continuar</string>
     <string name="definir_senha">Defina uma senha de acesso</string>
     <string name="desc_definir">Defina uma senha para que você possa acessar a nossa plataforma</string>
+    <string name="nav_search">Pesquisar</string>
+    <string name="nav_config">Configurar</string>
+    <string name="nav_fila">Fila de Espera</string>
 </resources>
