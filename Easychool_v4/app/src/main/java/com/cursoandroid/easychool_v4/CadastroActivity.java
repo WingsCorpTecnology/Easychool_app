@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 public class CadastroActivity extends AppCompatActivity {
     TextView txtNome, txtEmail, txtTelefone, txtRg, txtCpf;
-    CheckBox cbCondicaoUso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,6 @@ public class CadastroActivity extends AppCompatActivity {
         txtTelefone = findViewById(R.id.txt_telefone);
         txtRg = findViewById(R.id.txt_rg);
         txtCpf = findViewById(R.id.txt_cpf);
-        cbCondicaoUso = findViewById(R.id.cbCondicaoUso);
         Button btn = findViewById(R.id.btnCadastrar);
 
         textView.setTypeface(typeface);
@@ -40,7 +38,6 @@ public class CadastroActivity extends AppCompatActivity {
         txtTelefone.setTypeface(typeface);
         txtRg.setTypeface(typeface);
         txtCpf.setTypeface(typeface);
-        cbCondicaoUso.setTypeface(typeface);
         btn.setTypeface(typeface);
 
         //Esconder a ActionBar
@@ -51,6 +48,11 @@ public class CadastroActivity extends AppCompatActivity {
         if(verificarText()){
             if(validarFormatoEmail(txtEmail.getText().toString())) {
                 Intent intent = new Intent(this, CadastroSenhaActivity.class);
+                intent.putExtra("nome", txtNome.getText().toString());
+                intent.putExtra("email", txtEmail.getText().toString());
+                intent.putExtra("rg", txtRg.getText().toString());
+                intent.putExtra("cpf", txtCpf.getText().toString());
+
                 startActivity(intent);
             }
             else mensagemEmailInvalido();
@@ -74,9 +76,6 @@ public class CadastroActivity extends AppCompatActivity {
             preenchido = false;
         }
         else if(txtNome.getText().toString().trim().equals("")){
-            preenchido = false;
-        }
-        else if(cbCondicaoUso.isChecked() == false){
             preenchido = false;
         }
         else{

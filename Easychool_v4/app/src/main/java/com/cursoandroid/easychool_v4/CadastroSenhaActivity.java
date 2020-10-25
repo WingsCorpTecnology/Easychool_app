@@ -10,9 +10,18 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cursoandroid.easychool_v4.DAO.ResponsavelAlunoDAO;
+import com.cursoandroid.easychool_v4.model.ResponsavelAluno;
+
 public class CadastroSenhaActivity extends AppCompatActivity {
     TextView txtConfirmarSenha, txtSenha;
     CheckBox cbCondicaoUso;
+
+    private String nome, email, rg, cpf;
+
+    private ResponsavelAluno responsavelAluno;
+    private ResponsavelAlunoDAO responsavelAlunoDAO;
+    private CadastroActivity cadastroActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,10 @@ public class CadastroSenhaActivity extends AppCompatActivity {
         cbCondicaoUso.setTypeface(typeface);
         btn.setTypeface(typeface);
 
+        responsavelAlunoDAO = new ResponsavelAlunoDAO(getApplicationContext());
+        cadastroActivity = new CadastroActivity();
+        responsavelAluno = new ResponsavelAluno();
+
         //Esconder a ActionBar
         getSupportActionBar().hide();
     }
@@ -42,8 +55,13 @@ public class CadastroSenhaActivity extends AppCompatActivity {
     public void login(View view){
         if(verificarText()) {
             if(senhasIguais()) {
-                /*Intent intent = new Intent(this, activity_escola_mais_responsavel_escola_explicando.class);
-                startActivity(intent);*/
+                setarUser();
+
+                if(responsavelAlunoDAO.insert(responsavelAluno)) {
+                    Toast.makeText(getApplicationContext(), "Usuário salvo com sucesso!", Toast.LENGTH_SHORT).show();
+                    /*Intent intent = new Intent(this, activity_escola_mais_responsavel_escola_explicando.class);
+                    startActivity(intent);*/
+                }
             }
             else mensagemSenhasDiferentes();
         }
@@ -83,5 +101,19 @@ public class CadastroSenhaActivity extends AppCompatActivity {
 
     public void mensagemSenhasDiferentes(){
         Toast.makeText(this, "As senhas estão diferentes, deixe-as iguais para continuar", Toast.LENGTH_SHORT).show();
+    }
+
+    public void setarUser(){
+        //recuperar os dados da tela anterior
+        nome = (String) getIntent().getSerializableExtra("nome");
+        email = (String) getIntent().getSerializableExtra("email");
+        rg = (String) getIntent().getSerializableExtra("rg");
+        cpf = (String) getIntent().getSerializableExtra("cpf");
+
+        responsavelAluno.setNome(nome);
+        responsavelAluno.setRg(rg);
+        responsavelAluno.setCpf(cpf);
+        responsavelAluno.setEmail(email);
+        responsavelAluno.setSenha(txtSenha.getText().toString());
     }
 }

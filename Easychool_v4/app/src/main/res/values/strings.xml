@@ -29,4 +29,5 @@
     <string name="title_pesquisa">Pesquisar</string>
     <string name="title_fila">Fila de Espera</string>
     <string name="title_confguracao">Configurações</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

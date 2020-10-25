@@ -42,17 +42,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void telaInicial(View view){
-        if(verificarText()) {
-            if(validarFormatoEmail(txtEmail.getText().toString())) {
-                if(validarEmail(txtEmail.getText().toString()) && validarSenha(txtSenha.getText().toString())) {
+        //if(verificarText()) {
+        //    if(validarFormatoEmail(txtEmail.getText().toString())) {
+        //        if(validarEmail(txtEmail.getText().toString()) && validarSenha(txtSenha.getText().toString())) {
                     Intent intent = new Intent(this, PrincipalActivity.class);
                     startActivity(intent);
-                }
-                else mensagemUsuarioIncorreto();
-            }
-            else mensagemEmailInvalido();
-        }
-        else mensagemCampoVazio();
+        //        }
+        //        else mensagemUsuarioIncorreto();
+        //    }
+        //    else mensagemEmailInvalido();
+        //}
+        //else mensagemCampoVazio();
     }
 
     public boolean verificarText(){
