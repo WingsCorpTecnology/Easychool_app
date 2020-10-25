@@ -2,6 +2,7 @@ package com.cursoandroid.easychool_v4.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -40,7 +41,20 @@ public class ResponsavelAlunoDAO {
     }
 
     public boolean login(String email, String senha){
+        ContentValues values = new ContentValues();
 
+        values.put("nome", email);
+        values.put("senha", senha);
+
+        try{
+            String sql = "SELECT email, senha FROM " +DbHelper.TABELA_RESPONSAVEL_ALUNO+ " WHERE email like ? AND senha like ?";
+
+            ler.rawQuery(sql, new String[] { email, senha});
+        } catch (Exception e){
+            Log.e("INFO", "Erro ao pesquisar usuário" +e.getMessage());
+
+            return false;
+        }
 
         return true;
     }

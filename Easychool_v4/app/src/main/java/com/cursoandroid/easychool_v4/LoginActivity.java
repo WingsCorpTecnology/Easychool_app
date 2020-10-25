@@ -12,9 +12,15 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cursoandroid.easychool_v4.DAO.ResponsavelAlunoDAO;
+import com.cursoandroid.easychool_v4.model.ResponsavelAluno;
+
 public class LoginActivity extends AppCompatActivity {
     TextView txtEmail, txtSenha;
     CheckBox cbManterConectado;
+
+    private ResponsavelAluno responsavelAluno;
+    private ResponsavelAlunoDAO responsavelAlunoDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,20 +45,24 @@ public class LoginActivity extends AppCompatActivity {
 
         //Esconder a ActionBar
         getSupportActionBar().hide();
+
+        responsavelAlunoDAO = new ResponsavelAlunoDAO(getApplicationContext());
     }
 
     public void telaInicial(View view){
-        //if(verificarText()) {
-        //    if(validarFormatoEmail(txtEmail.getText().toString())) {
-        //        if(validarEmail(txtEmail.getText().toString()) && validarSenha(txtSenha.getText().toString())) {
+        if(verificarText()) {
+            if(validarFormatoEmail(txtEmail.getText().toString())) {
+                if(validarUser()) {
                     Intent intent = new Intent(this, PrincipalActivity.class);
                     startActivity(intent);
-        //        }
-        //        else mensagemUsuarioIncorreto();
-        //    }
-        //    else mensagemEmailInvalido();
-        //}
-        //else mensagemCampoVazio();
+
+                    Toast.makeText(getApplicationContext(), "Usuario logado", Toast.LENGTH_SHORT).show();
+                }
+                else mensagemUsuarioIncorreto();
+            }
+            else mensagemEmailInvalido();
+        }
+        else mensagemCampoVazio();
     }
 
     public boolean verificarText(){
@@ -103,6 +113,15 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
         else{
+            return false;
+        }
+    }
+
+    public boolean validarUser(){
+        if(responsavelAlunoDAO.login(txtEmail.getText().toString(), txtSenha.getText().toString())){
+            return true;
+        }
+        else {
             return false;
         }
     }
