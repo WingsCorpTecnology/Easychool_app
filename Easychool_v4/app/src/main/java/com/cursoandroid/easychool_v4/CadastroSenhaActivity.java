@@ -63,6 +63,8 @@ public class CadastroSenhaActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(this, PrincipalActivity.class);
                     startActivity(intent);
+
+                    finish();
                 }
             }
             else mensagemSenhasDiferentes();

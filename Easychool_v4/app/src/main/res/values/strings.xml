@@ -37,4 +37,8 @@
     <string name="from">From</string>
     <string name="empresa">Wings</string>
     <string name="title_config">Faça as suas configurações aqui</string>
+    <string name="config_perfil">Altere seus dados, mantendo-os sempre atualizados</string>
+    <string name="salvar">Salvar</string>
+    <string name="senha_antiga">Digite sua senha atual:</string>
+    <string name="senha_nova">Digite a senha nova</string>
 </resources>

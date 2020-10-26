@@ -67,12 +67,15 @@ public class CadastroActivity extends AppCompatActivity {
 
                 if(ValidarCpf.isCPF(CPF)) {
                     Intent intent = new Intent(this, CadastroSenhaActivity.class);
+
                     intent.putExtra("nome", txtNome.getText().toString());
                     intent.putExtra("email", txtEmail.getText().toString());
                     intent.putExtra("rg", txtRg.getText().toString());
                     intent.putExtra("cpf", txtCpf.getText().toString());
 
                     startActivity(intent);
+
+                    finish();
                 }
                 else mensagemCpfInvalido();
             }

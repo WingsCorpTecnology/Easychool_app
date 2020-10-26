@@ -35,10 +35,14 @@ public class MainActivity extends AppCompatActivity {
     public void Login(View view){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+
+        finish();
     }
 
     public void CadastroResponsavelAluno(View view){
         Intent intent = new Intent(this, CadastroActivity.class);
         startActivity(intent);
+
+        finish();
     }
 }

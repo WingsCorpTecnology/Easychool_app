@@ -57,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
 
                     Toast.makeText(getApplicationContext(), "Usuario logado", Toast.LENGTH_SHORT).show();
+
+                    finish();
                 }
                 else mensagemUsuarioIncorreto();
             }
