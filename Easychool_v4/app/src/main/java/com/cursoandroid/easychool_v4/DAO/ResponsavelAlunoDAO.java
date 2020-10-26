@@ -31,8 +31,15 @@ public class ResponsavelAlunoDAO {
 
         try {
             if(verificarCpfCadastrado(values.getAsString("cpf"))) {
-                escrever.insert(DbHelper.TABELA_RESPONSAVEL_ALUNO, null, values);
-                Log.i("INFO", "Usuário salvo com sucesso!");
+                if(verificarEmailCadastrado(values.getAsString("email"))) {
+                    escrever.insert(DbHelper.TABELA_RESPONSAVEL_ALUNO, null, values);
+                    Log.i("INFO", "Usuário salvo com sucesso!");
+                }
+                else{
+                    Toast.makeText(context, "Email já cadastrado!", Toast.LENGTH_SHORT).show();
+
+                    return false;
+                }
             }
             else{
                 Toast.makeText(context, "CPF já cadastrado!", Toast.LENGTH_SHORT).show();
@@ -76,6 +83,29 @@ public class ResponsavelAlunoDAO {
             String sql = "SELECT cpf FROM " +DbHelper.TABELA_RESPONSAVEL_ALUNO+ " WHERE cpf LIKE ?";
 
             Cursor c = ler.rawQuery(sql, new String[] { cpf });
+
+            if (c.getCount() == 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        } catch (Exception e){
+            Log.e("INFO", "Erro ao pesquisar usuário" +e.getMessage());
+
+            return false;
+        }
+    }
+
+    public boolean verificarEmailCadastrado(String email){
+        ContentValues values = new ContentValues();
+
+        values.put("email", email);
+
+        try{
+            String sql = "SELECT email FROM " +DbHelper.TABELA_RESPONSAVEL_ALUNO+ " WHERE email LIKE ?";
+
+            Cursor c = ler.rawQuery(sql, new String[] { email });
 
             if (c.getCount() == 0){
                 return true;
