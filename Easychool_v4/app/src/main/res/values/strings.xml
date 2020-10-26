@@ -30,4 +30,11 @@
     <string name="title_fila">Fila de Espera</string>
     <string name="title_confguracao">Configurações</string>
     <string name="title_activity_maps">Map</string>
+    <string name="conf_perfil">Perfil</string>
+    <string name="conf_notify">Notificações</string>
+    <string name="conf_prefire">Preferências</string>
+    <string name="conf_logout">Logout</string>
+    <string name="from">From</string>
+    <string name="empresa">Wings</string>
+    <string name="title_config">Faça as suas configurações aqui</string>
 </resources>
