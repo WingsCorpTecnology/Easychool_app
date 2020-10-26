@@ -2,6 +2,7 @@ package com.cursoandroid.easychool_v4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -59,8 +60,9 @@ public class CadastroSenhaActivity extends AppCompatActivity {
 
                 if(responsavelAlunoDAO.insert(responsavelAluno, getApplicationContext())) {
                     Toast.makeText(getApplicationContext(), "Usuário salvo com sucesso!", Toast.LENGTH_SHORT).show();
-                    /*Intent intent = new Intent(this, activity_escola_mais_responsavel_escola_explicando.class);
-                    startActivity(intent);*/
+
+                    Intent intent = new Intent(this, PrincipalActivity.class);
+                    startActivity(intent);
                 }
             }
             else mensagemSenhasDiferentes();
