@@ -5,15 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cursoandroid.easychool_v4.validar.DefinirTamanhoText;
+import com.cursoandroid.easychool_v4.validar.ValidarCpf;
+
 public class CadastroActivity extends AppCompatActivity {
-    TextView txtNome, txtEmail, txtTelefone, txtRg, txtCpf;
+    EditText txtNome, txtEmail, txtTelefone, txtRg, txtCpf;
+    String CPF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +48,33 @@ public class CadastroActivity extends AppCompatActivity {
 
         //Esconder a ActionBar
         getSupportActionBar().hide();
+
+        txtCpf.addTextChangedListener(DefinirTamanhoText.insert(txtCpf));
+
     }
 
     public void telaIncial(View view){
         if(verificarText()){
             if(validarFormatoEmail(txtEmail.getText().toString())) {
-                Intent intent = new Intent(this, CadastroSenhaActivity.class);
-                intent.putExtra("nome", txtNome.getText().toString());
-                intent.putExtra("email", txtEmail.getText().toString());
-                intent.putExtra("rg", txtRg.getText().toString());
-                intent.putExtra("cpf", txtCpf.getText().toString());
+                int cpf = Integer.parseInt(txtCpf.getText().toString().substring(0, 3).trim());
+                int cpf2 = Integer.parseInt(txtCpf.getText().toString().substring(4, 7));
+                int cpf3 = Integer.parseInt(txtCpf.getText().toString().substring(8, 11));
+                int cpf4 = Integer.parseInt(txtCpf.getText().toString().substring(12).trim());
 
-                startActivity(intent);
+                CPF = Integer.toString(cpf) + Integer.toString(cpf2) + Integer.toString(cpf3) + Integer.toString(cpf4);
+
+                Log.i("INFO", CPF);
+
+                if(ValidarCpf.isCPF(CPF)) {
+                    Intent intent = new Intent(this, CadastroSenhaActivity.class);
+                    intent.putExtra("nome", txtNome.getText().toString());
+                    intent.putExtra("email", txtEmail.getText().toString());
+                    intent.putExtra("rg", txtRg.getText().toString());
+                    intent.putExtra("cpf", txtCpf.getText().toString());
+
+                    startActivity(intent);
+                }
+                else mensagemCpfInvalido();
             }
             else mensagemEmailInvalido();
         }
@@ -90,6 +111,10 @@ public class CadastroActivity extends AppCompatActivity {
 
     public void mensagemEmailInvalido(){
         Toast.makeText(this, "Digite um email válido", Toast.LENGTH_SHORT).show();
+    }
+
+    public void mensagemCpfInvalido(){
+        Toast.makeText(this, "Digite um CPF válido", Toast.LENGTH_SHORT).show();
     }
 
     public boolean validarFormatoEmail(final String email){
