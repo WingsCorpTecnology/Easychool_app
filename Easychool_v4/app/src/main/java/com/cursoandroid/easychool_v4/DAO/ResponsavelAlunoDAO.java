@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.cursoandroid.easychool_v4.model.ResponsavelAluno;
 
@@ -19,7 +20,7 @@ public class ResponsavelAlunoDAO {
         ler = conexao.getReadableDatabase();
     }
 
-    public boolean insert(ResponsavelAluno responsavelAluno){
+    public boolean insert(ResponsavelAluno responsavelAluno, Context context){
         ContentValues values = new ContentValues();
 
         values.put("nome", responsavelAluno.getNome());
@@ -29,8 +30,15 @@ public class ResponsavelAlunoDAO {
         values.put("senha", responsavelAluno.getSenha());
 
         try {
-            escrever.insert(DbHelper.TABELA_RESPONSAVEL_ALUNO, null, values);
-            Log.i("INFO", "Usuário salvo com sucesso!");
+            if(verificarCpfCadastrado(values.getAsString("cpf"))) {
+                escrever.insert(DbHelper.TABELA_RESPONSAVEL_ALUNO, null, values);
+                Log.i("INFO", "Usuário salvo com sucesso!");
+            }
+            else{
+                Toast.makeText(context, "CPF já cadastrado!", Toast.LENGTH_SHORT).show();
+
+                return false;
+            }
         } catch (Exception e){
             Log.e("INFO", "Erro ao salvar usuário " +e.getMessage());
 
@@ -57,5 +65,28 @@ public class ResponsavelAlunoDAO {
         }
 
         return true;
+    }
+
+    public boolean verificarCpfCadastrado(String cpf){
+        ContentValues values = new ContentValues();
+
+        values.put("cpf", cpf);
+
+        try{
+            String sql = "SELECT cpf FROM " +DbHelper.TABELA_RESPONSAVEL_ALUNO+ " WHERE cpf LIKE ?";
+
+            Cursor c = ler.rawQuery(sql, new String[] { cpf });
+
+            if (c.getCount() == 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        } catch (Exception e){
+            Log.e("INFO", "Erro ao pesquisar usuário" +e.getMessage());
+
+            return false;
+        }
     }
 }

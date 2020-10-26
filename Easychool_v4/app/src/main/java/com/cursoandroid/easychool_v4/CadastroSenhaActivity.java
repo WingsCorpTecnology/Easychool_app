@@ -57,7 +57,7 @@ public class CadastroSenhaActivity extends AppCompatActivity {
             if(senhasIguais()) {
                 setarUser();
 
-                if(responsavelAlunoDAO.insert(responsavelAluno)) {
+                if(responsavelAlunoDAO.insert(responsavelAluno, getApplicationContext())) {
                     Toast.makeText(getApplicationContext(), "Usuário salvo com sucesso!", Toast.LENGTH_SHORT).show();
                     /*Intent intent = new Intent(this, activity_escola_mais_responsavel_escola_explicando.class);
                     startActivity(intent);*/
