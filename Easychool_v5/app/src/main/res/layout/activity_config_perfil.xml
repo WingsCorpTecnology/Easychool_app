@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/edtNome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/edtTelefone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -63,12 +63,12 @@
         android:inputType="number"
         android:textColorHint="@color/colorPrimary"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintEnd_toEndOf="@+id/edtNome"
+        app:layout_constraintStart_toStartOf="@+id/edtNome"
+        app:layout_constraintTop_toBottomOf="@+id/edtNome" />
 
     <EditText
-        android:id="@+id/editTextNumber2"
+        android:id="@+id/edtCpf"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -77,12 +77,12 @@
         android:inputType="number"
         android:textColorHint="@color/colorPrimary"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumber"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumber"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintEnd_toEndOf="@+id/edtTelefone"
+        app:layout_constraintStart_toStartOf="@+id/edtTelefone"
+        app:layout_constraintTop_toBottomOf="@+id/edtTelefone" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/edtEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -91,12 +91,12 @@
         android:inputType="textPersonName|text|textEmailAddress"
         android:textColorHint="@color/colorPrimary"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumber2"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumber2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
+        app:layout_constraintEnd_toEndOf="@+id/edtCpf"
+        app:layout_constraintStart_toStartOf="@+id/edtCpf"
+        app:layout_constraintTop_toBottomOf="@+id/edtCpf" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/edtSenhaAntiga"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -105,12 +105,12 @@
         android:inputType="textPassword"
         android:textColorHint="@color/colorPrimary"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintEnd_toEndOf="@+id/edtEmail"
+        app:layout_constraintStart_toStartOf="@+id/edtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/edtSenhaNova"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -119,12 +119,12 @@
         android:inputType="textPassword"
         android:textColorHint="@color/colorPrimary"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/edtSenhaAntiga"
+        app:layout_constraintStart_toStartOf="@+id/edtSenhaAntiga"
+        app:layout_constraintTop_toBottomOf="@+id/edtSenhaAntiga" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSalvar"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:background="@drawable/botao_customizado"
@@ -133,6 +133,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+        app:layout_constraintTop_toBottomOf="@+id/edtSenhaNova" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

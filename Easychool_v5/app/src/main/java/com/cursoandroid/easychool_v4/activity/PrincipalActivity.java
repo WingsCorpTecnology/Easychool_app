@@ -44,6 +44,10 @@ public class PrincipalActivity extends AppCompatActivity {
     public void manterConectado(){
         manterConectado = (Boolean) getIntent().getSerializableExtra("manterConectado");
 
+        if((Boolean) getIntent().getSerializableExtra("manterConectado") == null){
+            manterConectado = true;
+        }
+
         if(manterConectado != true){
             autenticacao.signOut();
         }
