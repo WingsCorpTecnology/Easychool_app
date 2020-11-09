@@ -2,6 +2,7 @@ package com.cursoandroid.easychool_v4.model;
 
 import com.cursoandroid.easychool_v4.config.ConfiguracaoFirebase;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
 
 import java.io.Serializable;
 
@@ -17,6 +18,7 @@ public class ResponsavelAluno implements Serializable {
     public ResponsavelAluno() {
     }
 
+    @Exclude
     public String getId() {
         return id;
     }
@@ -57,6 +59,7 @@ public class ResponsavelAluno implements Serializable {
         this.email = email;
     }
 
+    @Exclude
     public String getSenha() {
         return senha;
     }

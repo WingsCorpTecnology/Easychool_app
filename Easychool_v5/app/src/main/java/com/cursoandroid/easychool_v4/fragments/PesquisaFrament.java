@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.cursoandroid.easychool_v4.R;
 
-public class PesquisaFragment extends Fragment {
+public class PesquisaFrament extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

@@ -1,6 +1,5 @@
 package com.cursoandroid.easychool_v4.activity;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -63,9 +62,6 @@ public class CadastroSenhaActivity extends AppCompatActivity {
                 setarUser();
 
                 cadastrarResponsavel();
-
-                startActivity(new Intent(this, PrincipalActivity.class));
-                finish();
             }
             else mensagemSenhasDiferentes();
         }
