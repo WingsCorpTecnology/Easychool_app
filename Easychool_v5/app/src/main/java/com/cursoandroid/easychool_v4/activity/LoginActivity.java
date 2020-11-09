@@ -3,25 +3,32 @@ package com.cursoandroid.easychool_v4.activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Patterns;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.cursoandroid.easychool_v4.DAO.ResponsavelAlunoDAO;
 import com.cursoandroid.easychool_v4.R;
+import com.cursoandroid.easychool_v4.config.ConfiguracaoFirebase;
 import com.cursoandroid.easychool_v4.model.ResponsavelAluno;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class LoginActivity extends AppCompatActivity {
-    TextView txtEmail, txtSenha;
-    CheckBox cbManterConectado;
-
-    private ResponsavelAluno responsavelAluno;
-    private ResponsavelAlunoDAO responsavelAlunoDAO;
+    private EditText txtEmail, txtSenha;
+    private CheckBox cbManterConectado;
+    private FirebaseAuth autenticacao;
+    private ResponsavelAluno responsavel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,37 +51,31 @@ public class LoginActivity extends AppCompatActivity {
         cbManterConectado.setTypeface(typeface);
         btn.setTypeface(typeface);
 
+        responsavel = new ResponsavelAluno();
+
         //Esconder a ActionBar
         getSupportActionBar().hide();
-
-        responsavelAlunoDAO = new ResponsavelAlunoDAO(getApplicationContext());
     }
 
     public void telaInicial(View view){
         if(verificarText()) {
-            if(validarFormatoEmail(txtEmail.getText().toString())) {
-                if(validarUser()) {
-                    Intent intent = new Intent(this, PrincipalActivity.class);
-                    startActivity(intent);
+            responsavel.setEmail(txtEmail.getText().toString());
+            responsavel.setSenha(txtSenha.getText().toString());
 
-                    Toast.makeText(getApplicationContext(), "Usuario logado", Toast.LENGTH_SHORT).show();
-
-                    finish();
-                }
-                else mensagemUsuarioIncorreto();
-            }
-            else mensagemEmailInvalido();
+            validarLogin();
         }
         else mensagemCampoVazio();
+
+        Log.i("EmailSenha", txtEmail.getText().toString()+ " " +txtSenha.getText().toString());
     }
 
     public boolean verificarText(){
         boolean preenchido;
 
-        if(txtSenha.getText().toString().trim().equals("")){
+        if(txtEmail.getText().toString().isEmpty()){
             preenchido = false;
         }
-        else if(txtEmail.getText().toString().trim().equals("")){
+        else if(txtSenha.getText().toString().isEmpty()){
             preenchido = false;
         }
         else{
@@ -87,28 +88,44 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, "Preencha os campos vazios para continuar", Toast.LENGTH_SHORT).show();
     }
 
-    public void mensagemEmailInvalido(){
-        Toast.makeText(this, "Digite um email válido", Toast.LENGTH_SHORT).show();
+    public void validarLogin(){
+        autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
+        autenticacao.signInWithEmailAndPassword(responsavel.getEmail(), responsavel.getSenha()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    //msgLoginSucesso().show();
+
+                    abrirTelaPrincipal();
+                }
+                else{
+                    msgLoginErro(excessoes(task)).show();
+                }
+            }
+        });
     }
 
-    public void mensagemUsuarioIncorreto(){
-        Toast.makeText(this, "Usuário ou senha incorretos", Toast.LENGTH_SHORT).show();
+    public Toast msgLoginErro(String erro){
+        return Toast.makeText(getApplicationContext(), erro, Toast.LENGTH_SHORT);
     }
 
-    public boolean validarFormatoEmail(final String email){
-        if(Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            return true;
+    public String excessoes(@NonNull Task<AuthResult> task){
+        String excecao = "";
+        try{
+            throw task.getException();
+        } catch (FirebaseAuthInvalidUserException e) {
+            excecao = "Usuário não cadastrado";
+        } catch (FirebaseAuthInvalidCredentialsException e){
+            excecao = "E-mail e senha não correspondem a um usuário cadastrado";
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        else return false;
+
+        return excecao;
     }
 
-    public boolean validarUser(){//Validação do Usuario
-        /*if(responsavelAlunoDAO.login(txtEmail.getText().toString(), txtSenha.getText().toString())){
-            return true;
-        }
-        else {
-            return false;
-        }*/
-        return false;
+    public void abrirTelaPrincipal(){
+        startActivity(new Intent(this, PrincipalActivity.class));
+        finish();
     }
 }

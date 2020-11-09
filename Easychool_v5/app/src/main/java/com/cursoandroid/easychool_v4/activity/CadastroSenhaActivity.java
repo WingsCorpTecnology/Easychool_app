@@ -1,5 +1,6 @@
 package com.cursoandroid.easychool_v4.activity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -128,6 +129,8 @@ public class CadastroSenhaActivity extends AppCompatActivity {
                     String idResponsavel = Base64Custom.codificarBase64(responsavelAluno.getEmail());
                     responsavelAluno.setId(idResponsavel);
                     responsavelAluno.salvar();
+
+                    abrirMainActivity();
                 }
                 else{
                     msgCadastroErro(excessoes(task)).show();
@@ -156,5 +159,10 @@ public class CadastroSenhaActivity extends AppCompatActivity {
 
     public Toast msgCadastroErro(String erro){
         return Toast.makeText(getApplicationContext(), erro, Toast.LENGTH_SHORT);
+    }
+
+    public void abrirMainActivity(){
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }
