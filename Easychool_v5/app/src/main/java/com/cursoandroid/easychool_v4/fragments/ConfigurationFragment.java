@@ -61,18 +61,15 @@ public class ConfigurationFragment extends Fragment {
     }
 
     public void configurarPerfilAbrir(){
-        Intent intent = new Intent(getActivity(), ConfigPerfilActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(getActivity(), ConfigPerfilActivity.class));
     }
 
     public void configurarNotifyAbrir(){
-        Intent intent = new Intent(getActivity(), ConfigPerfilActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(getActivity(), ConfigPerfilActivity.class));
     }
 
     public void configurarPrefireAbrir(){
-        Intent intent = new Intent(getActivity(), ConfigPerfilActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(getActivity(), ConfigPerfilActivity.class));
     }
 
     public void logout(){

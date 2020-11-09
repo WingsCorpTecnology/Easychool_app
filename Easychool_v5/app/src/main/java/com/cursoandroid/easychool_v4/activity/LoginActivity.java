@@ -127,9 +127,20 @@ public class LoginActivity extends AppCompatActivity {
     public void abrirTelaPrincipal(){
         Intent intent = new Intent(this, PrincipalActivity.class);
 
-        intent.putExtra("manterConectado", cbManterConectado.isChecked());
+        //Log.i("ManterConectado", "" +verificarManterConectado());
+        intent.putExtra("manterConectado", verificarManterConectado());
 
         startActivity(intent);
         finish();
+    }
+
+    public boolean verificarManterConectado(){
+        return cbManterConectado.isChecked();
+        /*if(cbManterConectado.isChecked()){
+            return true;
+        }
+        else{
+            return false;
+        }*/
     }
 }
