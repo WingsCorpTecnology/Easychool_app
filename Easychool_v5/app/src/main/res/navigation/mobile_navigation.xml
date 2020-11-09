@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.cursoandroid.easychool_v4.ui.pesquisa.HomeFragment"
+        android:name="com.cursoandroid.easychool_v4.fragments.PesquisaFragment"
         android:label="@string/title_pesquisa"
         tools:layout="@layout/fragment_pesquisa" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.cursoandroid.easychool_v4.ui.fila.DashboardFragment"
+        android:name="com.cursoandroid.easychool_v4.fragments.FilaEsperaFragment"
         android:label="@string/title_fila"
         tools:layout="@layout/fragment_fila_de_espera" >
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.cursoandroid.easychool_v4.ui.configuracoes.NotificationsFragment"
+        android:name="com.cursoandroid.easychool_v4.fragments.ConfigurationFragment"
         android:label="@string/title_confguracao"
         tools:layout="@layout/fragment_configuracoes" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.cursoandroid.easychool_v4;
+package com.cursoandroid.easychool_v4.helper;
 
 import android.content.Context;
 import android.text.Editable;

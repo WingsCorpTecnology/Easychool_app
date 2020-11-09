@@ -1,4 +1,4 @@
-package com.cursoandroid.easychool_v4;
+package com.cursoandroid.easychool_v4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cursoandroid.easychool_v4.DAO.ResponsavelAlunoDAO;
+import com.cursoandroid.easychool_v4.R;
 import com.cursoandroid.easychool_v4.model.ResponsavelAluno;
 
 public class LoginActivity extends AppCompatActivity {
@@ -101,30 +102,13 @@ public class LoginActivity extends AppCompatActivity {
         else return false;
     }
 
-    public boolean validarSenha(String senha){
-        if(senha.equals("gi")){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public boolean validarEmail(String email){
-        if(email.equals("gi@gmail.com")){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public boolean validarUser(){
-        if(responsavelAlunoDAO.login(txtEmail.getText().toString(), txtSenha.getText().toString())){
+    public boolean validarUser(){//Validação do Usuario
+        /*if(responsavelAlunoDAO.login(txtEmail.getText().toString(), txtSenha.getText().toString())){
             return true;
         }
         else {
             return false;
-        }
+        }*/
+        return false;
     }
 }

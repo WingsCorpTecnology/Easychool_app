@@ -1,9 +1,11 @@
-package com.cursoandroid.easychool_v4;
+package com.cursoandroid.easychool_v4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.Menu;
+
+import com.cursoandroid.easychool_v4.R;
 
 public class ConfigPerfilActivity extends AppCompatActivity {
 

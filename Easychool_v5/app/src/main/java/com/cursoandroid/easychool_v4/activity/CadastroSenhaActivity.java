@@ -1,6 +1,4 @@
-package com.cursoandroid.easychool_v4;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.cursoandroid.easychool_v4.activity;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -11,18 +9,27 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cursoandroid.easychool_v4.DAO.ResponsavelAlunoDAO;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.cursoandroid.easychool_v4.Base64Custom;
+import com.cursoandroid.easychool_v4.R;
+import com.cursoandroid.easychool_v4.config.ConfiguracaoFirebase;
 import com.cursoandroid.easychool_v4.model.ResponsavelAluno;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 public class CadastroSenhaActivity extends AppCompatActivity {
-    TextView txtConfirmarSenha, txtSenha;
-    CheckBox cbCondicaoUso;
-
-    private String nome, email, rg, cpf;
-
+    private TextView txtConfirmarSenha, txtSenha;
+    private CheckBox cbCondicaoUso;
+    private String nome, email, rg, cpf, telefone;
     private ResponsavelAluno responsavelAluno;
-    private ResponsavelAlunoDAO responsavelAlunoDAO;
-    private CadastroActivity cadastroActivity;
+    private FirebaseAuth autenticacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +51,6 @@ public class CadastroSenhaActivity extends AppCompatActivity {
         txtSenha.setTypeface(typeface);
         cbCondicaoUso.setTypeface(typeface);
         btn.setTypeface(typeface);
-
-        responsavelAlunoDAO = new ResponsavelAlunoDAO(getApplicationContext());
-        cadastroActivity = new CadastroActivity();
         responsavelAluno = new ResponsavelAluno();
 
         //Esconder a ActionBar
@@ -58,14 +62,10 @@ public class CadastroSenhaActivity extends AppCompatActivity {
             if(senhasIguais()) {
                 setarUser();
 
-                if(responsavelAlunoDAO.insert(responsavelAluno, getApplicationContext())) {
-                    Toast.makeText(getApplicationContext(), "Usuário salvo com sucesso!", Toast.LENGTH_SHORT).show();
+                cadastrarResponsavel();
 
-                    Intent intent = new Intent(this, PrincipalActivity.class);
-                    startActivity(intent);
-
-                    finish();
-                }
+                startActivity(new Intent(this, PrincipalActivity.class));
+                finish();
             }
             else mensagemSenhasDiferentes();
         }
@@ -113,11 +113,52 @@ public class CadastroSenhaActivity extends AppCompatActivity {
         email = (String) getIntent().getSerializableExtra("email");
         rg = (String) getIntent().getSerializableExtra("rg");
         cpf = (String) getIntent().getSerializableExtra("cpf");
+        telefone = (String) getIntent().getSerializableExtra("telefone");
 
         responsavelAluno.setNome(nome);
         responsavelAluno.setRg(rg);
         responsavelAluno.setCpf(cpf);
         responsavelAluno.setEmail(email);
+        responsavelAluno.setTelefone(telefone);
         responsavelAluno.setSenha(txtSenha.getText().toString());
+    }
+
+    public void cadastrarResponsavel(){
+        autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
+        autenticacao.createUserWithEmailAndPassword(responsavelAluno.getEmail(), responsavelAluno.getSenha()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    String idResponsavel = Base64Custom.codificarBase64(responsavelAluno.getEmail());
+                    responsavelAluno.setId(idResponsavel);
+                    responsavelAluno.salvar();
+                }
+                else{
+                    msgCadastroErro(excessoes(task)).show();
+                }
+            }
+        });
+    }
+
+    public String excessoes(@NonNull Task<AuthResult> task){
+        String excecao = "";
+        try{
+            throw task.getException();
+        } catch (FirebaseAuthWeakPasswordException e) {
+            excecao = "Digite uma senha mais forte!";
+        } catch (FirebaseAuthInvalidCredentialsException e){
+            excecao = "Por favor, digite um e-mail valido!";
+        } catch (FirebaseAuthUserCollisionException e){
+            excecao = "Essa conta já foi cadastrada";
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return excecao;
+    }
+
+    public Toast msgCadastroErro(String erro){
+        return Toast.makeText(getApplicationContext(), erro, Toast.LENGTH_SHORT);
     }
 }

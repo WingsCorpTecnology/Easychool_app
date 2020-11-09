@@ -1,9 +1,12 @@
 package com.cursoandroid.easychool_v4.model;
 
+import com.cursoandroid.easychool_v4.config.ConfiguracaoFirebase;
+import com.google.firebase.database.DatabaseReference;
+
 import java.io.Serializable;
 
 public class ResponsavelAluno implements Serializable {
-    private long id;
+    private String id;
     private String nome;
     private String rg;
     private String cpf;
@@ -14,11 +17,11 @@ public class ResponsavelAluno implements Serializable {
     public ResponsavelAluno() {
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -68,5 +71,10 @@ public class ResponsavelAluno implements Serializable {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public void salvar(){
+        DatabaseReference firebase = ConfiguracaoFirebase.getFirebaseDatabase();
+        firebase.child("ResponsavelAluno").child(this.id).setValue(this);
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fundo_telas_login_cadastro"
-    tools:context=".CadastroActivity">
+    tools:context=".activity.CadastroActivity">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -78,7 +78,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_nome" />
 
-    <com.cursoandroid.easychool_v4.PhoneEditText
+    <com.cursoandroid.easychool_v4.helper.PhoneEditText
         android:id="@+id/txt_telefone"
         android:layout_width="337dp"
         android:layout_height="43dp"

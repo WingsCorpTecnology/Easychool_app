@@ -1,4 +1,4 @@
-package com.cursoandroid.easychool_v4;
+package com.cursoandroid.easychool_v4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,11 +9,11 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cursoandroid.easychool_v4.R;
 import com.cursoandroid.easychool_v4.validar.DefinirTamanhoText;
 import com.cursoandroid.easychool_v4.validar.ValidarCpf;
 
@@ -72,6 +72,7 @@ public class CadastroActivity extends AppCompatActivity {
                     intent.putExtra("email", txtEmail.getText().toString());
                     intent.putExtra("rg", txtRg.getText().toString());
                     intent.putExtra("cpf", txtCpf.getText().toString());
+                    intent.putExtra("telefone", txtTelefone.getText().toString());
 
                     startActivity(intent);
 

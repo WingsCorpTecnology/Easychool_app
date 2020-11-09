@@ -1,7 +1,8 @@
-package com.cursoandroid.easychool_v4;
+package com.cursoandroid.easychool_v4.activity;
 
 import android.os.Bundle;
 
+import com.cursoandroid.easychool_v4.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
