@@ -14,6 +14,7 @@ public class ResponsavelAluno implements Serializable {
     private String email;
     private String senha;
     private String telefone;
+    private boolean manterConectado;
 
     public ResponsavelAluno() {
     }

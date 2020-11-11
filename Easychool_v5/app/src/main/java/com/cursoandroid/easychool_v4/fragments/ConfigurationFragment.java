@@ -69,7 +69,7 @@ public class ConfigurationFragment extends Fragment {
     }
 
     public void configurarPrefireAbrir(){
-        startActivity(new Intent(getActivity(), ConfigPerfilActivity.class));
+        startActivity(new Intent(getActivity(), ConfigPreferenciasActivity.class));
     }
 
     public void logout(){

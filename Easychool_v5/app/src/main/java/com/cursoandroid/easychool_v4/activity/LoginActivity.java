@@ -3,7 +3,6 @@ package com.cursoandroid.easychool_v4.activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -65,8 +64,6 @@ public class LoginActivity extends AppCompatActivity {
             validarLogin();
         }
         else mensagemCampoVazio();
-
-        Log.i("EmailSenha", txtEmail.getText().toString()+ " " +txtSenha.getText().toString());
     }
 
     public boolean verificarText(){
@@ -125,22 +122,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void abrirTelaPrincipal(){
-        Intent intent = new Intent(this, PrincipalActivity.class);
-
-        //Log.i("ManterConectado", "" +verificarManterConectado());
-        intent.putExtra("manterConectado", verificarManterConectado());
-
-        startActivity(intent);
+        startActivity(new Intent(this, PrincipalActivity.class));
         finish();
-    }
-
-    public boolean verificarManterConectado(){
-        return cbManterConectado.isChecked();
-        /*if(cbManterConectado.isChecked()){
-            return true;
-        }
-        else{
-            return false;
-        }*/
     }
 }

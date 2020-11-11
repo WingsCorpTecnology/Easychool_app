@@ -15,7 +15,8 @@
         android:roundIcon="@drawable/logo_easychool"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ConfigPerfilActivity"></activity>
+        <activity android:name=".activity.ConfigPreferenciasActivity"></activity>
+        <activity android:name=".activity.ConfigPerfilActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -24,7 +25,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-
         <activity
             android:name=".activity.PrincipalActivity"
             android:label="@string/title_activity_principal" />
