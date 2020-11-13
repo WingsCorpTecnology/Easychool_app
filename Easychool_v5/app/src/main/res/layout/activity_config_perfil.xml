@@ -96,20 +96,6 @@
         app:layout_constraintTop_toBottomOf="@+id/edtCpf" />
 
     <EditText
-        android:id="@+id/edtSenhaAntiga"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:hint="@string/senha_antiga"
-        android:inputType="textPassword"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/edtEmail"
-        app:layout_constraintStart_toStartOf="@+id/edtEmail"
-        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
-
-    <EditText
         android:id="@+id/edtSenhaNova"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -119,9 +105,9 @@
         android:inputType="textPassword"
         android:textColorHint="@color/colorPrimary"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/edtSenhaAntiga"
-        app:layout_constraintStart_toStartOf="@+id/edtSenhaAntiga"
-        app:layout_constraintTop_toBottomOf="@+id/edtSenhaAntiga" />
+        app:layout_constraintEnd_toEndOf="@+id/edtEmail"
+        app:layout_constraintStart_toStartOf="@+id/edtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
     <Button
         android:id="@+id/btnSalvar"
